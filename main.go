@@ -1,25 +1,18 @@
 package main
 
 import (
-	"web_go/database"
-	"web_go/model"
-
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
+	"flag"
+	"fmt"
 )
 
 var err error
 
 func main() {
-	dbEnv := database.DBUrl(database.BuildDB())
-	database.Db, err = gorm.Open(mysql.Open(dbEnv), &gorm.Config{})
-	if err != nil {
-		panic("Failed to connect database")
-	}
+	
 
-	database.Db.AutoMigrate(&model.ProductCourse{})
-	database.Db.AutoMigrate(&model.Grade{})
-	database.Db.AutoMigrate(&model.ProductCourseRelationship{})
+	// database.Db.AutoMigrate(&model.ProductCourse{})
+	// database.Db.AutoMigrate(&model.Grade{})
+	// database.Db.AutoMigrate(&model.ProductCourseRelationship{})
 	// err := godotenv.Load()
 	// if err != nil {
 	// 	panic("Failed To Load Env")
@@ -29,4 +22,19 @@ func main() {
 	// println(os.Getenv("JWT_SIGNATURE_KEY"))
 	// server := routes.InitRoutes()
 	// server.Run(":8000")
+	
+	migrate := flag.String("m", "", "Unsupport Command")
+	flag.Parse()
+	command  := *migrate
+	if command != "abc" && command == "migrate" {
+		// dbEnv := database.DBUrl(database.BuildDB())
+		// database.Db, err = gorm.Open(mysql.Open(dbEnv), &gorm.Config{})
+		// if err != nil {
+		// 	panic("Failed to connect database")
+		// }
+		// database.Db.AutoMigrate(&model.Grade{})
+		fmt.Printf("oke")
+		return
+	}
+	fmt.Printf("Choose %s", *migrate)
 }

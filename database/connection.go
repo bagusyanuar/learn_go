@@ -22,7 +22,7 @@ func BuildDB() *DBConfig {
 		Port:     3306,
 		User:     "root",
 		Password: "",
-		DBName:   "isomorphic_tb",
+		DBName:   "learn_go",
 	}
 	return &config
 }
